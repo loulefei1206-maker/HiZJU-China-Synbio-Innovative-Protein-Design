@@ -312,6 +312,7 @@ project/
 │   └── reference/
 │
 ├── scripts/
+│   ├── sequence_generating/
 │   ├── sequence_processing/
 │   ├── esm_scoring/
 │   ├── foldx/
