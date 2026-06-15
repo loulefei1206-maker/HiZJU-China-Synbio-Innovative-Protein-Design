@@ -1,0 +1,1 @@
+We generated a mutant sequence pool using various generative models (EvoProtGrad, EvolvePro, ESM series, MultiEvolve, and ProteinNPT). The top 100 variants were selected based on model scoring, followed by CD-HIT clustering and sequence filtering to yield a finalized, cleaned mutant sequence pool.
