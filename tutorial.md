@@ -307,12 +307,12 @@ Output:
 project/
 │
 ├── data/
-│   ├── reference/
+│   ├── reference_sequences
 │   ├── generated_sequences/
-│   └── rankings/
+│   └── reference/
 │
 ├── scripts/
-│   ├── sequence_generation/
+│   ├── sequence_processing/
 │   ├── esm_scoring/
 │   ├── foldx/
 │   ├── esmfold/
@@ -323,8 +323,6 @@ project/
 │   ├── pool_clean/
 │   ├── top15/
 │   └── final_top6/
-│
-├── docs/
 │
 ├── tutorial.md
 │
