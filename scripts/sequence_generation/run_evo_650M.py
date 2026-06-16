@@ -5,7 +5,7 @@ import evo_prot_grad
 from transformers import AutoTokenizer, EsmForMaskedLM
 
 def main():
-    print("⏳ 正在初始化环境并加载模型，请稍候...")
+    print("正在初始化环境并加载模型，请稍候...")
     
     # 1. 硬件配置：自动检测并分配至你之前的 cuda:1 显卡
     target_device = 'cuda:1' if torch.cuda.is_available() else 'cpu'
@@ -20,7 +20,6 @@ def main():
     hf_model_name = "facebook/esm2_t33_650M_UR50D"
     print(f"   -> 正在加载 ESM-2 结构专家 ({hf_model_name})...")
     
-    # 【核心修复】：手动调用 transformers 下载并加载模型和翻译官
     my_model = EsmForMaskedLM.from_pretrained(hf_model_name)
     my_tokenizer = AutoTokenizer.from_pretrained(hf_model_name)
     
@@ -43,7 +42,7 @@ def main():
     )
 
     # 5. 启动 MCMC 定向进化引擎
-    print("🚀 模型加载完毕，开始双专家联合定向进化...")
+    print("模型加载完毕，开始双专家联合定向进化...")
     variants, scores = evo_prot_grad.DirectedEvolution(
         wt_fasta=temp_fasta_path,    
         output='all',                
@@ -51,7 +50,7 @@ def main():
         parallel_chains=3,           # 并行探索 3 条路线
         n_steps=5,                   # 进化步数 (若需跑更久，可修改此数值)
         max_mutations=15,            # 每条序列最多允许积累 15 个突变
-        verbose=False                # 【核心修复】：必须关闭，防止张量转换报错
+        verbose=False                
     )()
 
     # 6. 打包并保存结果为 CSV 表格
@@ -62,8 +61,8 @@ def main():
     })
     df.to_csv(output_csv, index=False)
     
-    print(f"🎉 进化任务圆满完成！共生成 {len(variants)} 个突变体。")
-    print(f"📁 结果已安全保存至本目录下的: {output_csv}")
+    print(f"进化任务完成，共生成 {len(variants)} 个突变体。")
+    print(f"结果已保存至本目录下的: {output_csv}")
 
 if __name__ == "__main__":
     main()
